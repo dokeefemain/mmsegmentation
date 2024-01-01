@@ -1,6 +1,6 @@
 _base_ = [
-    '../_base_/datasets/ade20k.py', '../_base_/default_runtime.py',
-    '../_base_/schedules/schedule_160k.py'
+    '../_base_/datasets/f-35.py', '../_base_/default_runtime.py',
+    '../_base_/schedules/schedule_25k.py'
 ]
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 crop_size = (512, 512)
@@ -13,7 +13,7 @@ data_preprocessor = dict(
     pad_val=0,
     seg_pad_val=255)
 # model_cfg
-num_classes = 150
+num_classes = 3
 model = dict(
     type='EncoderDecoder',
     data_preprocessor=data_preprocessor,
@@ -35,7 +35,7 @@ model = dict(
                      2048],  # input channels of pixel_decoder modules
         feat_channels=256,
         in_index=[0, 1, 2, 3],
-        num_classes=150,
+        num_classes=num_classes,
         out_channels=256,
         num_queries=100,
         pixel_decoder=dict(
